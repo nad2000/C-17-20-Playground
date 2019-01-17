@@ -22,5 +22,18 @@ int main() {
   for (auto it = strings.begin(); it != strings.end(); ++it)
     // cout << (it - strings.begin()) << ": " << *it << endl;
     cout << distance(strings.begin(), it) << ": " << *it << endl;
+
+  // let's explore the change of the capacity
+  vector<double> numbers(20); // reserve 20 elementes in the vetor
+  cout << "Size: " << numbers.size() << endl;
+  auto capacity = numbers.capacity();
+  cout << "Capacity: " << capacity << endl;
+  for (int i = 0; i < 10000; ++i) {
+    if (capacity < numbers.capacity()) {
+      capacity = numbers.capacity();
+      cout << "Capacity: " << capacity << " with " << numbers.size() << endl;
+    }
+    numbers.push_back(i);
+  }
 }
 
