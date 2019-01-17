@@ -1,20 +1,18 @@
-#include <iostream>
 #include <exception>
+#include <iostream>
 using namespace std;
 
 void goesWrong() {
-	throw exception();
-	throw bad_alloc();
+  throw exception();
+  throw bad_alloc();
 }
 
 int main() {
-	try {
-		goesWrong();
-	} catch (bad_alloc &e) {
-		cout << "Caught a bad_alloc exception... " << endl;
-	} catch (exception &e) {
-		cout << "Caught a generic exception... " << endl;
-	}
+  try {
+    goesWrong();
+  } catch (bad_alloc &e) {
+    cout << "Caught a bad_alloc exception... " << endl;
+  } catch (exception &e) {
+    cout << "Caught a generic exception... " << endl;
+  }
 }
-	
-

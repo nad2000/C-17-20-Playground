@@ -50,4 +50,3 @@ int main() {
   cout << "Size: " << numbers.size() << endl;
   cout << "Capacity: " << numbers.capacity() << endl;
 }
-
