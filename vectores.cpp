@@ -35,5 +35,9 @@ int main() {
     }
     numbers.push_back(i);
   }
+  numbers.resize(100);
+  cout << "After resizing..." << endl;
+  cout << "Size: " << numbers.size() << endl;
+  cout << "Capacity: " << numbers.capacity() << endl;
 }
 
