@@ -24,7 +24,7 @@ int main() {
     cout << distance(strings.begin(), it) << ": " << *it << endl;
 
   // let's explore the change of the capacity
-  vector<double> numbers(20); // reserve 20 elementes in the vetor
+  vector<double> numbers(0);
   cout << "Size: " << numbers.size() << endl;
   auto capacity = numbers.capacity();
   cout << "Capacity: " << capacity << endl;
@@ -35,8 +35,18 @@ int main() {
     }
     numbers.push_back(i);
   }
-  numbers.resize(100);
+  numbers.resize(1000);
   cout << "After resizing..." << endl;
+  cout << "Size: " << numbers.size() << endl;
+  cout << "Capacity: " << numbers.capacity() << endl;
+
+  numbers.reserve(20000);
+  cout << "After reserving..." << endl;
+  cout << "Size: " << numbers.size() << endl;
+  cout << "Capacity: " << numbers.capacity() << endl;
+
+  numbers.shrink_to_fit();
+  cout << "After shrink_to_fit..." << endl;
   cout << "Size: " << numbers.size() << endl;
   cout << "Capacity: " << numbers.capacity() << endl;
 }
