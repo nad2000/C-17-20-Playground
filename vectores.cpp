@@ -14,5 +14,9 @@ int main() {
   for (unsigned int i = 0; i < strings.size(); i++) {
     cout << i << ": " << strings[i] << endl;
   }
+
+  for (auto it = strings.begin(); it != strings.end(); ++it)
+    // cout << (it - strings.begin()) << ": " << *it << endl;
+    cout << distance(strings.begin(), it) << ": " << *it << endl;
 }
 
