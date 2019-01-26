@@ -11,11 +11,16 @@ private:
 
 public:
   Complex();
-  /* Complex(const double real, const double imaginary); */
-  /* Complex(const Complex &c); */
-  /* Complex &operator=(const Complex &c); */
-  /* friend std::ostream &operator<<(std::ostream &out, const Complex &c); */
+  Complex(const double real, const double imaginary);
+  Complex(const Complex &c);
+  const Complex &operator=(const Complex &c);
+  // it's an overkill, the getters should be used only when there are
+  // actual need for them.
+  // these methods should be declared 'const'
+  double getReal() const { return real; }
+  double getImaginary() const { return imaginary; }
 };
+std::ostream &operator<<(std::ostream &out, const Complex &c);
 } // namespace nad2000
 
 #endif /* COMPLEX_HCOMPLEX_H */
