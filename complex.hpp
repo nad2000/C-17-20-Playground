@@ -22,6 +22,8 @@ public:
 };
 std::ostream &operator<<(std::ostream &out, const Complex &c);
 Complex operator+(const Complex &a, const Complex &b);
+Complex operator+(const Complex &a, const double &b);
+Complex operator+(const double &a, const Complex &b);
 } // namespace nad2000
 
 #endif /* COMPLEX_HCOMPLEX_H */

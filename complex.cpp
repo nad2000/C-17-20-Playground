@@ -26,5 +26,11 @@ Complex operator+(const Complex &a, const Complex &b) {
   return Complex(a.getReal() + b.getReal(),
                  a.getImaginary() + b.getImaginary());
 }
+Complex operator+(const Complex &a, const double &b) {
+  return Complex(a.getReal() + b, a.getImaginary());
+}
+Complex operator+(const double &a, const Complex &b) {
+  return Complex(a + b.getReal(), b.getImaginary());
+}
 } // namespace nad2000
 
