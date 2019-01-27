@@ -42,3 +42,7 @@ TEST(ComplexNumbers, canSumUpWithReal) {
   out << -9.7 + Complex(13, 42);
   ASSERT_EQ(out.str(), "3.3+42i");
 }
+TEST(ComplexNumbers, canCheckIfEqual) {
+  auto check = (Complex(13, 42) + Complex(-3, -40)) == Complex(10, 2);
+  ASSERT_TRUE(check);
+}
