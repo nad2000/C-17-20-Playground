@@ -19,9 +19,9 @@ public:
   // these methods should be declared 'const'
   double getReal() const { return real; }
   double getImaginary() const { return imaginary; }
-  bool operator==(const Complex &c) const {
-    return real == c.real && imaginary == c.imaginary;
-  }
+  bool operator==(const Complex &c) const;
+  bool operator!=(const Complex &c) const;
+  Complex operator*() const; // complex conjugate
 };
 std::ostream &operator<<(std::ostream &out, const Complex &c);
 Complex operator+(const Complex &a, const Complex &b);

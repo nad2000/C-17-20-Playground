@@ -43,6 +43,15 @@ TEST(ComplexNumbers, canSumUpWithReal) {
   ASSERT_EQ(out.str(), "3.3+42i");
 }
 TEST(ComplexNumbers, canCheckIfEqual) {
-  auto check = (Complex(13, 42) + Complex(-3, -40)) == Complex(10, 2);
-  ASSERT_TRUE(check);
+  ASSERT_TRUE((Complex(13, 42) + Complex(-3, -40)) == Complex(10, 2));
+  ASSERT_FALSE((Complex(13, 42) + Complex(-3, -40)) == Complex(10, 12));
+  ASSERT_FALSE((Complex(13, 42) + Complex(-3, -40)) == Complex(1, 3));
+}
+TEST(ComplexNumbers, canCheckIfNotEqual) {
+  ASSERT_FALSE((Complex(13, 42) + Complex(-3, -40)) != Complex(10, 2));
+  ASSERT_TRUE((Complex(13, 42) + Complex(-3, -40)) != Complex(10, 12));
+  ASSERT_TRUE((Complex(13, 42) + Complex(-3, -40)) != Complex(1, 3));
+}
+TEST(ComplexNumbers, complexConjugate) {
+  ASSERT_EQ(*Complex(13, 42), Complex(13, -42));
 }

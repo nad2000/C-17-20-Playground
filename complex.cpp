@@ -32,5 +32,12 @@ Complex operator+(const Complex &a, const double &b) {
 Complex operator+(const double &a, const Complex &b) {
   return Complex(a + b.getReal(), b.getImaginary());
 }
+bool Complex::operator==(const Complex &c) const {
+  return real == c.real && imaginary == c.imaginary;
+}
+bool Complex::operator!=(const Complex &c) const {
+  return real != c.real || imaginary != c.imaginary;
+}
+Complex Complex::operator*() const { return Complex(real, -imaginary); }
 } // namespace nad2000
 
