@@ -22,6 +22,14 @@ TEST(ComplexNumbers, canAssign) {
 }
 TEST(ComplexNumbers, canPrintOut) {
   ostringstream out;
-  out << nad2000::Complex c(13, 42);
+  out << nad2000::Complex(13, 42);
   ASSERT_EQ(out.str(), "13+42i");
+}
+TEST(ComplexNumbers, canSumUp) {
+  ostringstream out;
+  nad2000::Complex a(13, 42);
+  nad2000::Complex b(-3, -40);
+  auto c = a + b;
+  out << c;
+  ASSERT_EQ(out.str(), "10+2i");
 }

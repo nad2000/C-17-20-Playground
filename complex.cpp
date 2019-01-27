@@ -22,5 +22,9 @@ std::ostream &operator<<(std::ostream &out, const Complex &c) {
   out << c.getImaginary() << "i";
   return out;
 }
+Complex operator+(const Complex &a, const Complex &b) {
+  return Complex(a.getReal() + b.getReal(),
+                 a.getImaginary() + b.getImaginary());
+}
 } // namespace nad2000
 
