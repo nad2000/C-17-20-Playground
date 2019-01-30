@@ -4,6 +4,9 @@ using namespace std;
 // actually 'virtual' methods are function pointer in a way
 
 void test() { cout << "Hello" << endl; }
+void test_2(int value, string str) {
+  cout << "Hello: " << value << " / " << str << endl;
+}
 
 int main() {
   // while
@@ -24,6 +27,9 @@ int main() {
   // short-cut:
   void (*pTest0)() = test;
   pTest0();
+  void (*pTest2)(int, string) = test_2;
+  // void (*pTest2)(int, string) = test; // this doesn't work
+  pTest2(42, "Hello Again!");
 
   return 0;
 }
