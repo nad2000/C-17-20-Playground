@@ -30,7 +30,13 @@ void check(const Test &value) { cout << "L-value function!" << endl; }
 
 void check(Test &&value) { cout << "R-value function!" << endl; }
 
+void intCheck(const int &i) { cout << "L-value (int) function!" << endl; }
+
+void intCheck(int &&i) { cout << "R-value (int) function!" << endl; }
+
 Test getTest() { return Test(); }
+
+int getIntTest() { return 42; }
 
 int main() {
   Test t1 = getTest();
@@ -60,6 +66,15 @@ int main() {
   check(t1);
   check(getTest());
   check(Test());
+
+  intCheck(1);
+  intCheck(getIntTest());
+  auto intV = getIntTest();
+  intCheck(intV);
+  auto &&rintV = getIntTest();
+  intCheck(rintV);
+  int &lintV = intV;
+  intCheck(lintV);
 
   return 0;
 }
