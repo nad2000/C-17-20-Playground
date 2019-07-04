@@ -20,7 +20,7 @@ int main() {
   cout << int(v) << endl;              // initializing a new int;
   cout << static_cast<int>(v) << endl; // special, safe casting ...
 
-  Parent *pp = &b;
+  Parent *pp = &b; // plain-old polimorphism.
   // Brother *pb = &p;  // won't work, but can be forces using "static_cast":
   Brother *pb = static_cast<Brother *>(
       &p); // there can be all kinds of probles with virtual functions...
