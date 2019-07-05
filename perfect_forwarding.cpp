@@ -6,6 +6,7 @@ using namespace std;
 
 struct Test {};
 
+// the 'static_cast' casts precisely to l-value or r-value
 template <typename T> void call(T &&arg) { check(static_cast<T>(arg)); }
 
 void check(Test &t) { cout << "lvalue" << endl; }
