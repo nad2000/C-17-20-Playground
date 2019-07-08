@@ -4,13 +4,15 @@
 using namespace std;
 
 // when write to file the padding should be removed
-#pragma pack(push, 1)
+#pragma pack(push, 1) // or #pragma pack(1)
+#pragma pack(show)
 struct Person {
   char name[50]; // 50 bytes
   int age;       // 4 bytest
   double height; // 8 bytest
 };
-#pragma pack(pop)
+#pragma pack(pop) // or #pragma pack()
+#pragma pack(show)
 
 int main() {
 
