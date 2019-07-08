@@ -2,6 +2,8 @@
 #define BITMAP_H
 
 #include <cstdint>
+#include <memory>
+#include <string>
 
 #pragma pack(2) // makes to align data stucture with 2 bytes
 // preventing extra padding.
@@ -28,5 +30,18 @@ struct BitmapInfoHeader {
 };
 
 #pragma pack()
+
+class Bitmap {
+private:
+  int width_{0};
+  int height_{0};
+  std::unique_ptr<uint8_t[]> pixels_;
+
+public:
+  Bitmap(int width, int height);
+  bool write(std::string filename);
+  void set_pixel(int x, int y, uint8_t r, uint8_t g, uint8_t b);
+  virtual ~Bitmap();
+};
 
 #endif /* BITMAP_H */
