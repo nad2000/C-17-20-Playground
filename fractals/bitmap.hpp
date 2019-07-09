@@ -35,6 +35,7 @@ class Bitmap {
 private:
   int width_{0};
   int height_{0};
+  int size_{0};
   std::unique_ptr<uint8_t[]> pixels_;
 
 public:
