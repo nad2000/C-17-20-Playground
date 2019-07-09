@@ -12,10 +12,24 @@ inline bool file_exists(const string &name) {
 
 TEST(BitmapNumbers, canCreate) { Bitmap b(10, 12); }
 TEST(BitmapNumbers, canWrite) {
-  remove("test000.bmp");
+  auto filename = "test000.bmp";
+  remove(filename);
   Bitmap b(10, 12);
-  ASSERT_TRUE(b.write("test000.bmp"));
-  ASSERT_TRUE(file_exists("test000.bmp"));
+  ASSERT_TRUE(b.write(filename));
+  ASSERT_TRUE(file_exists(filename));
+}
+TEST(BitmapNumbers, canSetAPixel) {
+  auto filename = "test001.bmp";
+  remove(filename);
+  Bitmap b(100, 100);
+  for (int i = 0; i < 100; i++) {
+    b.set_pixel(i, i, 255, 255, 255);
+    b.set_pixel(i, 100 - i, 255, 255, 0);
+    b.set_pixel(i, 49, 0, 255, 255);
+    b.set_pixel(49, i, 255, 0, 255);
+  }
+  ASSERT_TRUE(b.write(filename));
+  ASSERT_TRUE(file_exists(filename));
 }
 
 /* TEST(BitmapNumbers, runCopyInitialization) { */
