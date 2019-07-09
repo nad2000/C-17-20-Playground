@@ -2,10 +2,21 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <sstream>
+#include <stdio.h>
 
 using namespace std;
 
+inline bool file_exists(const string &name) {
+  return (access(name.c_str(), F_OK) != -1);
+}
+
 TEST(BitmapNumbers, canCreate) { Bitmap b(10, 12); }
+TEST(BitmapNumbers, canWrite) {
+  remove("test000.bmp");
+  Bitmap b(10, 12);
+  ASSERT_TRUE(b.write("test000.bmp"));
+  ASSERT_TRUE(file_exists("test000.bmp"));
+}
 
 /* TEST(BitmapNumbers, runCopyInitialization) { */
 /*   Bitmap c(13, 42); */
