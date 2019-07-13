@@ -1,6 +1,7 @@
 #include "bitmap.hpp"
 #include <cstdint>
 #include <iostream>
+#include <math.h>
 #include <memory>
 
 using namespace std;
@@ -28,22 +29,28 @@ int main(int argc, char *argv[]) {
       int iterations = Mandelbrot::get_iterations(xf, yf);
       if (iterations != Mandelbrot::MAX_ITERATIONS)
         histogram[iterations]++;
-      uint8_t color =
-          (uint8_t)(257 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
       fractal[y][x] = iterations;
-
-      color = color * color * color;
-      b.set_pixel(x, y, 0, color, 0);
-
-      if (color < min)
-        min = color;
-      if (color > max)
-        max = color;
     }
   }
-  for (int i = 0; i <= Mandelbrot::MAX_ITERATIONS; i++)
-    cout << histogram[i] << " ";
-  cout << endl;
+  int total = 0;
+  for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
+    total += histogram[i];
+  for (int y = 0; y < HEIGHT; y++) {
+    for (int x = 0; x < WIDTH; x++) {
+      uint8_t red{0}, green{0}, blue{0};
+      auto iterations = fractal[y][x];
+      uint8_t color =
+          (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+
+      double hue = 0.0;
+      if (iterations != Mandelbrot::MAX_ITERATIONS) {
+        for (int i = 0; i < iterations; i++)
+          hue += ((double)histogram[i]) / total;
+        green = pow(255, hue);
+      }
+      b.set_pixel(x, y, 0, green, 0);
+    }
+  }
 
   b.write("mandelbrot.bmp");
   cout << "min: " << min << ", max: " << max << endl;
