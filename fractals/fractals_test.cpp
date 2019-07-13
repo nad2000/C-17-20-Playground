@@ -34,7 +34,8 @@ TEST(Bitmap, canSetAPixel) {
 TEST(Mandelbrot, canCreate) { Mandelbrot b{}; }
 TEST(Mandelbrot, canGetIterations) {
   Mandelbrot b{};
-  b.get_iterations(1.0, 1.0);
+  auto i = b.get_iterations(1.0, 1.0);
+  ASSERT_TRUE(i > 0);
 }
 
 /* TEST(BitmapNumbers, runCopyInitialization) { */

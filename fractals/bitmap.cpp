@@ -1,4 +1,5 @@
 #include "bitmap.hpp"
+#include <complex>
 #include <fstream>
 #include <iostream>
 
@@ -47,4 +48,16 @@ bool Bitmap::write(string filename) {
 Mandelbrot::Mandelbrot() {}
 Mandelbrot::~Mandelbrot() {}
 
-int Mandelbrot::get_iterations(double x, double y) { return 0; }
+int Mandelbrot::get_iterations(double x, double y) {
+  complex<double> c(x, y);
+  complex<double> z = 0;
+
+  int i;
+  for (i = 0; i < MAX_ITERATIONS; i++) {
+    z = z * z + c;
+    if (abs(z) > 2)
+      break;
+  }
+
+  return i;
+}
