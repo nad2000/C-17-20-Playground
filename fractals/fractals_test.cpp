@@ -10,15 +10,15 @@ inline bool file_exists(const string &name) {
   return (access(name.c_str(), F_OK) != -1);
 }
 
-TEST(BitmapNumbers, canCreate) { Bitmap b(10, 12); }
-TEST(BitmapNumbers, canWrite) {
+TEST(Bitmap, canCreate) { Bitmap b(10, 12); }
+TEST(Bitmap, canWrite) {
   auto filename = "test000.bmp";
   remove(filename);
   Bitmap b(10, 12);
   ASSERT_TRUE(b.write(filename));
   ASSERT_TRUE(file_exists(filename));
 }
-TEST(BitmapNumbers, canSetAPixel) {
+TEST(Bitmap, canSetAPixel) {
   auto filename = "test001.bmp";
   remove(filename);
   Bitmap b(100, 100);
@@ -30,6 +30,11 @@ TEST(BitmapNumbers, canSetAPixel) {
   }
   ASSERT_TRUE(b.write(filename));
   ASSERT_TRUE(file_exists(filename));
+}
+TEST(Mandelbrot, canCreate) { Mandelbrot b{}; }
+TEST(Mandelbrot, canGetIterations) {
+  Mandelbrot b{};
+  b.get_iterations(1.0, 1.0);
 }
 
 /* TEST(BitmapNumbers, runCopyInitialization) { */
