@@ -45,4 +45,15 @@ public:
   virtual ~Bitmap();
 };
 
+class Mandelbrot {
+public:
+  static const int MAX_ITERATIONS = 1000;
+
+public:
+  Mandelbrot();
+  virtual ~Mandelbrot();
+
+  static int get_iterations(double x, double y);
+};
+
 #endif /* BITMAP_H */
