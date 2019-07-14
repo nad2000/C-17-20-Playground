@@ -56,6 +56,9 @@ public:
   virtual ~Mandelbrot();
 
   static int get_iterations(double x, double y);
+  static int get_iterations(std::pair<double, double> const &c) {
+    return get_iterations(c.first, c.second);
+  }
 };
 
 struct Zoom {

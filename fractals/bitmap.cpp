@@ -53,8 +53,11 @@ void ZoomList::add(const Zoom &zoom) {
 
   zooms_.push_back(zoom);
 }
-std::pair<double, double> ZoomList::do_zoom(int x, int y) {
-  return pair<double, double>{0, 0};
+
+pair<double, double> ZoomList::do_zoom(int x, int y) {
+  double x_fractal = (x - width_ / 2) * scale_ + x_centre_;
+  double y_fractal = (y - height_ / 2) * scale_ + x_centre_;
+  return pair<double, double>{x_fractal, y_fractal};
 }
 
 Mandelbrot::Mandelbrot() {}

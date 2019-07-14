@@ -18,17 +18,19 @@ int main(int argc, char *argv[]) {
   unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
   unique_ptr<unique_ptr<int[]>[]> fractal(new unique_ptr<int[]>[HEIGHT]);
   ZoomList zl(WIDTH, HEIGHT);
-  zl.add(Zoom{WIDTH / 2, HEIGHT / 2, 1.0});
+  zl.add(Zoom{WIDTH / 2, HEIGHT / 2, 4.0 / WIDTH});
+  zl.add(Zoom{295, HEIGHT - 202, 0.1});
+  zl.add(Zoom{312, HEIGHT - 304, 0.1});
 
   for (int y = 0; y < HEIGHT; y++) {
     fractal[y] = unique_ptr<int[]>(new int[WIDTH]);
 
     for (int x = 0; x < WIDTH; x++) {
       // Fractals:
-      double xf = (x - WIDTH / 2 - 200) * 2.0 / HEIGHT;
-      double yf = (y - HEIGHT / 2) * 2.0 / HEIGHT;
-
-      int iterations = Mandelbrot::get_iterations(xf, yf);
+      /* double xf = (x - WIDTH / 2 - 200) * 2.0 / HEIGHT; */
+      /* double yf = (y - HEIGHT / 2) * 2.0 / HEIGHT; */
+      pair<double, double> coords = zl.do_zoom(x, y);
+      int iterations = Mandelbrot::get_iterations(coords);
       if (iterations != Mandelbrot::MAX_ITERATIONS)
         histogram[iterations]++;
       fractal[y][x] = iterations;
