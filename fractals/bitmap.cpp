@@ -2,6 +2,7 @@
 #include <complex>
 #include <fstream>
 #include <iostream>
+#include <utility>
 
 using namespace std;
 
@@ -43,6 +44,17 @@ bool Bitmap::write(string filename) {
   }
 
   return true;
+}
+ZoomList::ZoomList(int width, int height) : width_{width}, height_{height} {};
+void ZoomList::add(const Zoom &zoom) {
+  x_centre_ += (zoom.x - width_ / 2) * scale_;
+  y_centre_ += (zoom.y - width_ / 2) * scale_;
+  scale_ *= zoom.scale;
+
+  zooms_.push_back(zoom);
+}
+std::pair<double, double> ZoomList::do_zoom(int x, int y) {
+  return pair<double, double>{0, 0};
 }
 
 Mandelbrot::Mandelbrot() {}

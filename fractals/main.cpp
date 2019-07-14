@@ -17,6 +17,8 @@ int main(int argc, char *argv[]) {
 
   unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
   unique_ptr<unique_ptr<int[]>[]> fractal(new unique_ptr<int[]>[HEIGHT]);
+  ZoomList zl(WIDTH, HEIGHT);
+  zl.add(Zoom{WIDTH / 2, HEIGHT / 2, 1.0});
 
   for (int y = 0; y < HEIGHT; y++) {
     fractal[y] = unique_ptr<int[]>(new int[WIDTH]);
