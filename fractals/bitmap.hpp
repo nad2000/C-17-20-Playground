@@ -79,4 +79,21 @@ public:
   std::pair<double, double> do_zoom(int x, int y);
 };
 
+class FractalCreator {
+private:
+  Bitmap b;
+  std::unique_ptr<std::unique_ptr<int[]>[]> fractal;
+  std::unique_ptr<int[]> histogram;
+  ZoomList zl;
+
+public:
+  int static const WIDTH = 800, HEIGHT = 600;
+  FractalCreator();
+  virtual ~FractalCreator();
+  void calc_iteration();
+  void draw_fractal();
+  void add_zoom(const Zoom &zoom);
+  void write_bitmap(const std::string &filename);
+};
+
 #endif /* BITMAP_H */
