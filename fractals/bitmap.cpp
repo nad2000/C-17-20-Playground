@@ -107,16 +107,20 @@ void FractalCreator::draw_fractal() {
     total += histogram[i];
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
-      uint8_t red{0}, green{0}, blue{0};
+      // uint8_t red{0}, green{0}, blue{0};
+      uint8_t green{0};
       auto iterations = fractal[y][x];
-      uint8_t color =
-          (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+      /* uint8_t color = */
+      /*     (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+       */
 
       double hue = 0.0;
       if (iterations != Mandelbrot::MAX_ITERATIONS) {
         for (int i = 0; i < iterations; i++)
           hue += ((double)histogram[i]) / total;
-        green = pow(255, hue);
+        // green = 255 * hue;
+        // green = pow(255, hue);
+        green = (255 * hue + pow(255, hue)) / 2;
       }
       b.set_pixel(x, y, 0, green, 0);
     }
