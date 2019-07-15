@@ -77,19 +77,20 @@ int Mandelbrot::get_iterations(double x, double y) {
   return i;
 }
 
-FractalCreator::FractalCreator()
-    : b(WIDTH, HEIGHT), fractal(new unique_ptr<int[]>[HEIGHT]),
-      histogram(new int[Mandelbrot::MAX_ITERATIONS]{0}), zl(WIDTH, HEIGHT) {}
+FractalCreator::FractalCreator(int width, int height)
+    : width_(width), height_(height), b(width, height),
+      fractal(new unique_ptr<int[]>[height]),
+      histogram(new int[Mandelbrot::MAX_ITERATIONS]{0}), zl(width, height) {}
 
 FractalCreator::~FractalCreator(){};
 void FractalCreator::add_zoom(const Zoom &zoom) { zl.add(zoom); }
 
 void FractalCreator::calc_iteration() {
-  for (int y = 0; y < HEIGHT; y++) {
+  for (int y = 0; y < height_; y++) {
     if (fractal[y] == nullptr)
-      fractal[y] = unique_ptr<int[]>(new int[WIDTH]);
+      fractal[y] = unique_ptr<int[]>(new int[width_]);
 
-    for (int x = 0; x < WIDTH; x++) {
+    for (int x = 0; x < width_; x++) {
       // Fractals:
       pair<double, double> coords = zl.do_zoom(x, y);
       int iterations = Mandelbrot::get_iterations(coords);
@@ -104,8 +105,8 @@ void FractalCreator::draw_fractal() {
   int total = 0;
   for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
     total += histogram[i];
-  for (int y = 0; y < HEIGHT; y++) {
-    for (int x = 0; x < WIDTH; x++) {
+  for (int y = 0; y < height_; y++) {
+    for (int x = 0; x < width_; x++) {
       uint8_t red{0}, green{0}, blue{0};
       auto iterations = fractal[y][x];
       uint8_t color =

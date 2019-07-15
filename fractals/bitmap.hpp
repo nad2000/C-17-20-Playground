@@ -81,14 +81,16 @@ public:
 
 class FractalCreator {
 private:
+  int width_, height_;
   Bitmap b;
   std::unique_ptr<std::unique_ptr<int[]>[]> fractal;
   std::unique_ptr<int[]> histogram;
   ZoomList zl;
 
 public:
-  int static const WIDTH = 800, HEIGHT = 600;
-  FractalCreator();
+  inline int get_width() { return width_; }
+  inline int get_height() { return height_; }
+  FractalCreator(int width, int hight);
   virtual ~FractalCreator();
   void calc_iteration();
   void draw_fractal();
