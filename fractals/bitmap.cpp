@@ -45,18 +45,18 @@ bool Bitmap::write(string filename) {
 
   return true;
 }
-ZoomList::ZoomList(int width, int height) : width_{width}, height_{height} {};
+ZoomList::ZoomList(int width, int height) : width_{width}, height_{height} {}
 void ZoomList::add(const Zoom &zoom) {
-  x_centre_ += (zoom.x - width_ / 2) * scale_;
-  y_centre_ += (zoom.y - width_ / 2) * scale_;
-  scale_ *= zoom.scale;
-
   zooms_.push_back(zoom);
+
+  x_centre_ += (zoom.x - width_ / 2) * scale_;
+  y_centre_ += (zoom.y - height_ / 2) * scale_;
+  scale_ *= zoom.scale;
 }
 
 pair<double, double> ZoomList::do_zoom(int x, int y) {
-  double x_fractal = (x - width_ / 2) * scale_ + x_centre_;
-  double y_fractal = (y - height_ / 2) * scale_ + x_centre_;
+  double x_fractal = ((x - width_ / 2) * scale_ + x_centre_) / width_;
+  double y_fractal = ((y - height_ / 2) * scale_ + y_centre_) / height_;
   return pair<double, double>{x_fractal, y_fractal};
 }
 
@@ -129,3 +129,5 @@ void FractalCreator::draw_fractal() {
 void FractalCreator::write_bitmap(const std::string &filename) {
   b.write("mandelbrot.bmp");
 }
+
+RGB RGB::operator-(const RGB &c) { return RGB{r - c.r, g - c.g, b - c.b}; };

@@ -38,6 +38,36 @@ TEST(Mandelbrot, canGetIterations) {
   ASSERT_TRUE(i > 0);
 }
 
+TEST(RGB, canCreeate) { RGB c{1.0, 1.0, 6.3}; }
+TEST(RGB, canSubtract) {
+  RGB c0{1.0, 1.0, 6.3};
+  auto c1 = c0 - RGB{1.0, 1.0, 1.0};
+  ASSERT_DOUBLE_EQ(c1.b, 5.3);
+}
+
+TEST(ZoomList, doesZoom) {
+  ZoomList zl{100, 100};
+  auto dp = zl.do_zoom(10, 20);
+  cout << dp.first << ":" << dp.second << endl;
+}
+
+TEST(FractalCreator, canCreate) {
+  auto filename = "test002.bmp";
+  remove(filename);
+  int const WIDTH = 100, HEIGHT = 100;
+  FractalCreator fc{WIDTH, HEIGHT};
+
+  /* fc.add_zoom(Zoom{WIDTH / 2, HEIGHT / 2, 0.1 / WIDTH}); */
+  /* fc.add_zoom(Zoom{55, HEIGHT - 30, 0.1}); */
+  /* fc.add_zoom(Zoom{55, HEIGHT - 44, 0.1}); */
+
+  fc.calc_iteration();
+  fc.draw_fractal();
+
+  fc.write_bitmap(filename);
+  ASSERT_TRUE(file_exists(filename));
+}
+
 /* TEST(BitmapNumbers, runCopyInitialization) { */
 /*   Bitmap c(13, 42); */
 /*   Bitmap c2 = c; */

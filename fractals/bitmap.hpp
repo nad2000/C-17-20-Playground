@@ -98,4 +98,9 @@ public:
   void write_bitmap(const std::string &filename);
 };
 
+struct RGB {
+  double r, g, b;
+  RGB operator-(const RGB &c);
+};
+
 #endif /* BITMAP_H */
