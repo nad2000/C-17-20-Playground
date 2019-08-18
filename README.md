@@ -2,6 +2,8 @@
 
 Notes from "Learn Advanced C++ Programming", other courses and just mocking around...
 
+Some of the experiments are supplied with the [Googletest](https://github.com/google/googletest) unit tests.
+
 To compile, run:
 
 ```sh
