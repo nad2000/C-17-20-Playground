@@ -42,7 +42,7 @@ private:
 
 public:
   Bitmap(int width, int height);
-  bool write(std::string filename);
+  bool write(const std::string &filename);
   void set_pixel(int x, int y, uint8_t r, uint8_t g, uint8_t b);
   virtual ~Bitmap();
 };

@@ -63,8 +63,8 @@ TEST(FractalCreator, canCreate) {
 
   fc.calc_iteration();
   fc.draw_fractal();
-
   fc.write_bitmap(filename);
+
   ASSERT_TRUE(file_exists(filename));
 }
 
