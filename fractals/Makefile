@@ -245,3 +245,6 @@ MockingCoverage: MockingTestN
 	     --gcov-tool ./llvm-gcov.sh \
 	     --capture -o cov.info
 	genhtml cov.info -o output
+
+main: bitmap.a
+	$(CLANG) -o main main.cpp bitmap.a

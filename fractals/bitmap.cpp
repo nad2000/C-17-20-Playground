@@ -130,9 +130,9 @@ void FractalCreator::draw_fractal() {
       if (iterations != Mandelbrot::MAX_ITERATIONS) {
         for (int i = 0; i < iterations; i++)
           hue += ((double)histogram[i]) / total;
-        // green = 255 * hue;
+        green = 255 * hue;
         // green = pow(255, hue);
-        green = (255 * hue + pow(255, hue)) / 2;
+        // green = (255 * hue + pow(255, hue)) / 2;
       }
       b.set_pixel(x, y, 0, green, 0);
     }
@@ -141,6 +141,14 @@ void FractalCreator::draw_fractal() {
 
 void FractalCreator::write_bitmap(const std::string &filename) {
   b.write(filename);
+}
+
+void FractalCreator::run(const std::string &filename) {
+  add_zoom(Zoom{295, height_ - 202, 0.1});
+  add_zoom(Zoom{312, height_ - 304, 0.1});
+  calc_iteration();
+  draw_fractal();
+  write_bitmap(filename);
 }
 
 RGB RGB::operator-(const RGB &c) { return RGB{r - c.r, g - c.g, b - c.b}; };

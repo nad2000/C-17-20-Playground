@@ -96,6 +96,7 @@ public:
   void draw_fractal();
   void add_zoom(const Zoom &zoom);
   void write_bitmap(const std::string &filename);
+  void run(const std::string &filename);
 };
 
 struct RGB {
