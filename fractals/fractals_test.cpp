@@ -38,10 +38,17 @@ TEST(Mandelbrot, canGetIterations) {
   ASSERT_TRUE(i > 0);
 }
 
-TEST(RGB, canCreeate) { RGB c{1.0, 1.0, 6.3}; }
+TEST(RGB, canCreeate) {
+  RGB c{1.0, 1.0, 6.3};
+  ASSERT_DOUBLE_EQ(c.r, 1.0);
+  ASSERT_DOUBLE_EQ(c.g, 1.0);
+  ASSERT_DOUBLE_EQ(c.b, 6.3);
+}
 TEST(RGB, canSubtract) {
-  RGB c0{1.0, 1.0, 6.3};
+  RGB c0{0.0, 1.0, 6.3};
   auto c1 = c0 - RGB{1.0, 1.0, 1.0};
+  ASSERT_DOUBLE_EQ(c1.r, -1.0);
+  ASSERT_DOUBLE_EQ(c1.g, 0.0);
   ASSERT_DOUBLE_EQ(c1.b, 5.3);
 }
 
