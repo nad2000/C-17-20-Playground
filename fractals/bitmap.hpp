@@ -81,7 +81,7 @@ public:
 
 class FractalCreator {
 private:
-  int width_, height_;
+  int width_, height_, total_;
   Bitmap b;
   std::unique_ptr<std::unique_ptr<int[]>[]> fractal;
   std::unique_ptr<int[]> histogram;

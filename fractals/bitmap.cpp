@@ -90,7 +90,7 @@ int Mandelbrot::get_iterations(double x, double y) {
 }
 
 FractalCreator::FractalCreator(int width, int height)
-    : width_(width), height_(height), b(width, height),
+    : width_(width), height_(height), total_{0}, b(width, height),
       fractal(new unique_ptr<int[]>[height]),
       histogram(new int[Mandelbrot::MAX_ITERATIONS]{0}), zl(width, height) {}
 
@@ -111,12 +111,12 @@ void FractalCreator::calc_iteration() {
       fractal[y][x] = iterations;
     }
   }
+  total_ = 0;
+  for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
+    total_ += histogram[i];
 }
 
 void FractalCreator::draw_fractal() {
-  int total = 0;
-  for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++)
-    total += histogram[i];
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
       // uint8_t red{0}, green{0}, blue{0};
@@ -129,7 +129,7 @@ void FractalCreator::draw_fractal() {
       double hue = 0.0;
       if (iterations != Mandelbrot::MAX_ITERATIONS) {
         for (int i = 0; i < iterations; i++)
-          hue += ((double)histogram[i]) / total;
+          hue += ((double)histogram[i]) / total_;
         green = 255 * hue;
         // green = pow(255, hue);
         // green = (255 * hue + pow(255, hue)) / 2;
