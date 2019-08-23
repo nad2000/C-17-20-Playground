@@ -31,6 +31,8 @@ int main(int argc, char *argv[]) {
   /* fc.calc_iteration(); */
   /* fc.draw_fractal(); */
 
+  fc.add_zoom(Zoom{295, 202, 0.1});
+  // fc.add_zoom(Zoom{312, HEIGHT - 304, 0.1});
   fc.run("mandelbrot.bmp");
   return 0;
 }

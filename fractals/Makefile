@@ -176,9 +176,10 @@ cmake_check_build_system:
 INC = -I$(HOME)/googletest/googletest/include/ -I$(HOME)/googletest/googlemock/include/
 LIB = -L$(HOME)/googletest/build/lib/ -lgmock -lgtest -lgtest_main -lgmock_main
 # CLANG = clang++ -Wall -pthread -Wno-unused-command-line-argument -O0 -g -fprofile-arcs -ftest-coverage -pthread -std=c++2a $(INC) 
-CLANG = clang++ -Wall -pthread -Wno-unused-command-line-argument -O0 -g -pthread -std=c++2a $(INC) 
+#CLANG = clang++ -Wall -pthread -Wno-unused-command-line-argument -O0 -g -pthread -std=c++2a $(INC) 
 # clang++ -O0 -g -fprofile-arcs -ftest-coverage -std=c++2a -pthread BowlingTest.cpp Bowling.a  $(HOME)/googletest/build/lib/*.a -o .BowlingTest
 # CLANG = clang++ -c -Wall -pthread -Wno-unused-command-line-argument -O0 -g -std=c++2a $(INC) $(LIB)
+CLANG = clang++ -Wall -pthread -Wno-unused-command-line-argument -O3 -std=c++2a $(INC) 
 
 bitmap.o: bitmap.cpp
 	$(CLANG) -c -o bitmap.o bitmap.cpp

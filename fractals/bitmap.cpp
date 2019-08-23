@@ -117,10 +117,12 @@ void FractalCreator::calc_iteration() {
 }
 
 void FractalCreator::draw_fractal() {
+
+  RGB start_color{0, 0, 0}, end_color{0, 0, 0},
+      color_diff = end_color - start_color;
   for (int y = 0; y < height_; y++) {
     for (int x = 0; x < width_; x++) {
-      // uint8_t red{0}, green{0}, blue{0};
-      uint8_t green{0};
+      uint8_t red{0}, green{0}, blue{0};
       auto iterations = fractal[y][x];
       /* uint8_t color = */
       /*     (uint8_t)(256 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
@@ -130,11 +132,14 @@ void FractalCreator::draw_fractal() {
       if (iterations != Mandelbrot::MAX_ITERATIONS) {
         for (int i = 0; i < iterations; i++)
           hue += ((double)histogram[i]) / total_;
-        green = 255 * hue;
+        red = start_color.r + color_diff.r * hue;
+        green = start_color.g + color_diff.g * hue;
+        blue = start_color.b + color_diff.b * hue;
+
         // green = pow(255, hue);
         // green = (255 * hue + pow(255, hue)) / 2;
       }
-      b.set_pixel(x, y, 0, green, 0);
+      b.set_pixel(x, y, red, green, blue);
     }
   }
 }
@@ -144,8 +149,6 @@ void FractalCreator::write_bitmap(const std::string &filename) {
 }
 
 void FractalCreator::run(const std::string &filename) {
-  add_zoom(Zoom{295, height_ - 202, 0.1});
-  add_zoom(Zoom{312, height_ - 304, 0.1});
   calc_iteration();
   draw_fractal();
   write_bitmap(filename);
